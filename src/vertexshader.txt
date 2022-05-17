@@ -1,0 +1,22 @@
+#version 330 core
+
+uniform mat4 modelViewMatrix;
+uniform mat4 projectionMatrix;
+
+layout (location = 0) in vec3 vertPosition;
+layout (location = 1) in vec3 vertNormal;
+
+out vec3 normal;
+out mat3 MV;
+varying vec3 mvPosition;
+
+void main() {
+    // Unprojected position for flat shading
+    mvPosition = (modelViewMatrix * vec4(vertPosition, 1.0)).xyz;
+    MV = mat3(modelViewMatrix);
+
+    // Projected position for actual rendering
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(vertPosition, 1.0);
+
+    normal = vertNormal;
+}

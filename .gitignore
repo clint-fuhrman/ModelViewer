@@ -1,0 +1,11 @@
+.vs/
+*.sln
+*vcxproj*
+Debug/
+
+*/glm
+*/GL
+*.lib
+*.dll
+
+CppProperties.json
